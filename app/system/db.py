@@ -10,7 +10,7 @@ DATABASE_URL = os.getenv("DATABASE_URL", "postgresql+psycopg2://user:password@db
 engine = create_engine(DATABASE_URL, echo=True)
 
 # Crear los esquemas si no existen
-with engine.connect() as conn:
+with engine.begin() as conn:
     conn.execute(text("CREATE SCHEMA IF NOT EXISTS auth"))
     conn.execute(text("CREATE SCHEMA IF NOT EXISTS core"))
     
